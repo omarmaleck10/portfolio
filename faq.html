@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Preguntas Frecuentes — Podología Parrilla · Sevilla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .faq-layout { display: grid; grid-template-columns: 260px 1fr; gap: clamp(32px,5vw,72px); align-items: start; }
+    .faq-sidebar { position: sticky; top: 88px; }
+    .faq-nav { display: flex; flex-direction: column; gap: 4px; }
+    .faq-nav a { padding: 10px 14px; font-size: 14px; font-weight: 500; color: var(--slate); border-radius: 8px; border-left: 2px solid transparent; transition: all var(--ease); }
+    .faq-nav a:hover { background: var(--off); color: var(--navy); }
+    .faq-nav a.active { background: var(--mint-pale); color: var(--mint); border-left-color: var(--mint); font-weight: 600; }
+    .faq-section-title { font-size: 20px; font-weight: 700; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--border); scroll-margin-top: 90px; }
+    .faq-group { margin-bottom: clamp(40px,5vw,64px); }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 18px 0; background: none; border: none; cursor: pointer; font-family: var(--font); font-size: 15px; font-weight: 600; color: var(--navy); text-align: left; gap: 16px; line-height: 1.4; }
+    .faq-btn svg { width: 20px; height: 20px; stroke: var(--slate); fill: none; stroke-width: 2; flex-shrink: 0; transition: transform var(--ease), stroke var(--ease); }
+    .faq-item.open .faq-btn { color: var(--mint); }
+    .faq-item.open .faq-btn svg { transform: rotate(45deg); stroke: var(--mint); }
+    .faq-body { max-height: 0; overflow: hidden; transition: max-height .38s ease; }
+    .faq-item.open .faq-body { max-height: 400px; }
+    .faq-body p { padding-bottom: 18px; font-size: 14px; color: var(--slate); line-height: 1.75; }
+    .faq-body a { color: var(--mint); }
+    @media (max-width: 768px) { .faq-layout { grid-template-columns: 1fr; } .faq-sidebar { position: static; } .faq-nav { flex-direction: row; flex-wrap: wrap; } }
+  </style>
+</head>
+<body>
+<header class="header"><nav class="nav"><a href="index.html" class="logo"><div class="logo-mark"><svg viewBox="0 0 24 24" fill="#2ABFA3"><path d="M8.5 21c-1.5 0-2.8-.6-3.7-1.6C3.9 18.4 3.5 17 3.5 15.5c0-1.2.3-2.4.8-3.5.5-1 1.1-2 1.6-3 .4-.7.7-1.5.9-2.3.2-.8.2-1.6 0-2.3-.1-.4-.1-.8 0-1.1.2-.7.8-1.2 1.5-1.3.7-.1 1.4.2 1.8.8l.2.3c.3.5.5 1 .5 1.6 0 .5-.1 1-.3 1.5l-.1.2c-.1.3 0 .6.2.8.2.2.5.2.7.1.9-.4 1.9-.3 2.7.3.5.3.9.8 1.1 1.3.1.3.4.5.7.5.4 0 .7-.1 1-.3.4-.3.9-.4 1.4-.3.7.1 1.3.6 1.5 1.3.2.6.1 1.3-.2 1.9-.4.7-.5 1.5-.4 2.3.1.5.1 1 0 1.5-.3 1.3-1.1 2.4-2.3 3.1C13.6 20.7 12.5 21 11.3 21H8.5z"/></svg></div><div class="logo-text"><strong>Podología Parrilla</strong><span>Sevilla</span></div></a><ul class="nav-links"><li><a href="index.html">Inicio</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="tarifas.html">Tarifas</a></li><li><a href="equipo.html">Equipo</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contacto.html">Contacto</a></li></ul><a href="reservar.html" class="nav-cta"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Reservar cita</a><button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button></nav></header>
+<div class="mobile-drawer" id="mobileDrawer"><a href="index.html">Inicio</a><a href="servicios.html">Servicios</a><a href="tarifas.html">Tarifas</a><a href="equipo.html">Equipo</a><a href="faq.html">Preguntas frecuentes</a><a href="contacto.html">Contacto</a><a href="reservar.html" class="drawer-cta">Reservar cita</a></div>
+
+<div class="page-hero"><div class="container"><div class="page-hero-content">
+  <div class="breadcrumb"><a href="index.html">Inicio</a><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>Preguntas frecuentes</div>
+  <h1>Preguntas <span>frecuentes</span></h1>
+  <p>Resolvemos las dudas más comunes de nuestros pacientes antes de la primera visita.</p>
+</div></div></div>
+
+<section class="section">
+  <div class="container">
+    <div class="faq-layout">
+      <div class="faq-sidebar">
+        <nav class="faq-nav">
+          <a href="#general" class="active">General</a>
+          <a href="#citas">Citas y reservas</a>
+          <a href="#tratamientos">Tratamientos</a>
+          <a href="#precios">Precios</a>
+          <a href="#plantillas">Plantillas</a>
+        </nav>
+      </div>
+      <div class="faq-content">
+
+        <div class="faq-group" id="general">
+          <h2 class="faq-section-title">General</h2>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿Cuándo debo visitar a un podólogo?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>Deberías visitar a un podólogo si tienes dolor en los pies o en las piernas al caminar o en reposo, si tienes callos, durezas o uñas encarnadas que te molestan, si notas que tu hijo camina de forma extraña, o si practicas deporte y quieres prevenir lesiones. También es recomendable una revisión anual si eres diabético.</p></div></div>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿Atendéis a todas las edades?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>Sí, atendemos desde niños en edad de aprendizaje de la marcha hasta personas mayores. Disponemos de consulta especializada en podología infantil y también atendemos a pacientes geriátricos y diabéticos con protocolos específicos para cada caso.</p></div></div>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿Ofrecéis servicio a domicilio?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>Sí, disponemos de servicio de podología a domicilio en Sevilla para pacientes con movilidad reducida o que prefieran recibir la atención en su hogar. Consúltanos disponibilidad y tarifas llamando al <a href="tel:644696197">644 69 61 97</a>.</p></div></div>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿Dónde está la clínica?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>Estamos en Calle Arroyo, 22, en el centro de Sevilla. Disponemos de acceso fácil en transporte público. Si tienes dudas para encontrarnos, llámanos y te indicamos cómo llegar.</p></div></div>
+        </div>
+
+        <div class="faq-group" id="citas">
+          <h2 class="faq-section-title">Citas y reservas</h2>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿Necesito cita previa?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>Sí, trabajamos exclusivamente con cita previa para garantizarte atención en el horario que mejor te venga y sin esperas. Puedes reservar online desde nuestra web o llamando al 644 69 61 97.</p></div></div>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿Cuánto dura la primera consulta?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>La primera consulta dura entre 30 y 45 minutos. Dedicamos el tiempo necesario para escuchar al paciente, explorar el problema y explicar con detalle el diagnóstico y el plan de tratamiento.</p></div></div>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿Cómo puedo cancelar o cambiar mi cita?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>Llámanos al 644 69 61 97 o escríbenos a podologiaparrilla@gmail.com con al menos 24 horas de antelación. Lo gestionamos sin ningún problema.</p></div></div>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿Qué debo llevar a la primera consulta?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>Si tienes plantillas anteriores, pruébas de imagen (radiografías, resonancias) o informes de otros especialistas relacionados con tu problema, tráelos. También es útil que vengas con el calzado que usas habitualmente para que podamos valorarlo.</p></div></div>
+        </div>
+
+        <div class="faq-group" id="tratamientos">
+          <h2 class="faq-section-title">Tratamientos</h2>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿La cirugía de uña encarnada duele?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>La cirugía se realiza con anestesia local, por lo que durante el procedimiento no sentirás dolor. Tras la intervención puede haber alguna molestia leve los primeros días, que se controla fácilmente con analgésicos habituales. La mayoría de pacientes vuelven a su actividad normal en pocos días.</p></div></div>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿Cuántas sesiones necesito para el tratamiento de verrugas?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>Depende del tamaño y la respuesta de cada lesión. El precio que cobramos es cerrado e incluye todas las sesiones necesarias hasta la resolución completa. No habrá costes adicionales por las revisiones.</p></div></div>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿En qué consiste el estudio de la pisada?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>Realizamos una exploración completa en camilla (valorando la movilidad, la fuerza muscular y la alineación de los segmentos del pie y la pierna) y en bipedestación. Completamos el estudio con la plataforma de presiones informatizada, que registra cómo distribuyes el peso cuando estás de pie y cuando caminas.</p></div></div>
+        </div>
+
+        <div class="faq-group" id="precios">
+          <h2 class="faq-section-title">Precios</h2>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿Aceptáis seguro médico?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>Actualmente trabajamos de forma privada y no estamos concertados con seguros médicos. Nuestras tarifas son competitivas para el nivel de especialización y atención que ofrecemos. <a href="tarifas.html">Ver tarifas completas</a>.</p></div></div>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿Los precios incluyen revisiones?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>En el caso del tratamiento de verrugas plantares, sí. El precio es cerrado e incluye todas las sesiones y revisiones hasta la resolución. Para otros tratamientos, el precio indicado corresponde a la consulta completa de ese día.</p></div></div>
+        </div>
+
+        <div class="faq-group" id="plantillas">
+          <h2 class="faq-section-title">Plantillas</h2>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿Cuánto tardan en fabricarse las plantillas?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>Las fabricamos en el propio centro, por lo que el tiempo de entrega es muy reducido. En la mayoría de los casos las tienes disponibles en pocos días tras el estudio biomecánico.</p></div></div>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿Cuánto duran las plantillas?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>Depende del uso y de los materiales empleados. Las plantillas rígidas suelen durar varios años. Las plantillas de materiales más blandos se desgastan antes, especialmente en deportistas de alto volumen de entrenamiento. Recomendamos una revisión anual.</p></div></div>
+          <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">¿Las plantillas sirven para cualquier tipo de calzado?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-body"><p>Diseñamos las plantillas en función del calzado que usas habitualmente. Si las necesitas para zapatillas deportivas y también para calzado de trabajo o formal, lo tenemos en cuenta durante el diseño para que sean lo más versátiles posible.</p></div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip"><div class="container"><div class="cta-strip-inner reveal"><div><h2>¿No encuentras tu respuesta?</h2><p>Escríbenos o llámanos. Estamos encantados de ayudarte.</p></div><div class="cta-strip-actions"><a href="contacto.html" class="btn btn-white btn-lg">Contactar</a><div class="cta-phone"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Llamar: <a href="tel:644696197">644 69 61 97</a></div></div></div></div></section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="index.html" class="logo footer-logo"><div class="logo-mark"><svg viewBox="0 0 24 24" fill="#2ABFA3"><path d="M8.5 21c-1.5 0-2.8-.6-3.7-1.6C3.9 18.4 3.5 17 3.5 15.5c0-1.2.3-2.4.8-3.5.5-1 1.1-2 1.6-3 .4-.7.7-1.5.9-2.3.2-.8.2-1.6 0-2.3-.1-.4-.1-.8 0-1.1.2-.7.8-1.2 1.5-1.3.7-.1 1.4.2 1.8.8l.2.3c.3.5.5 1 .5 1.6 0 .5-.1 1-.3 1.5l-.1.2c-.1.3 0 .6.2.8.2.2.5.2.7.1.9-.4 1.9-.3 2.7.3.5.3.9.8 1.1 1.3.1.3.4.5.7.5.4 0 .7-.1 1-.3.4-.3.9-.4 1.4-.3.7.1 1.3.6 1.5 1.3.2.6.1 1.3-.2 1.9-.4.7-.5 1.5-.4 2.3.1.5.1 1 0 1.5-.3 1.3-1.1 2.4-2.3 3.1C13.6 20.7 12.5 21 11.3 21H8.5z"/></svg></div><div class="logo-text"><strong>Podología Parrilla</strong><span>Sevilla</span></div></a><p>Centro especializado en podología y fisioterapia. Calle Arroyo, 22 · Sevilla.</p></div><div class="footer-col"><h4>Páginas</h4><ul><li><a href="servicios.html">Servicios</a></li><li><a href="tarifas.html">Tarifas</a></li><li><a href="equipo.html">Equipo</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="reservar.html">Reservar</a></li></ul></div><div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:644696197">644 69 61 97</a></li><li><a href="mailto:podologiaparrilla@gmail.com">podologiaparrilla@gmail.com</a></li></ul></div></div><div class="footer-bottom"><span>&copy; 2025 Centro de Podología Parrilla.</span></div></div></footer>
+<script src="nav.js"></script>
+<script>
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  item.closest('.faq-group').querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+const faqNavLinks = document.querySelectorAll('.faq-nav a');
+const faqGroups = document.querySelectorAll('.faq-group');
+const io2 = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      faqNavLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+faqGroups.forEach(g => io2.observe(g));
+</script>
+</body>
+</html>
