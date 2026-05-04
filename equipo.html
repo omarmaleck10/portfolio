@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Equipo — Podología Parrilla · Sevilla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .team-hero-grid {
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      gap: clamp(40px,6vw,80px); align-items: start;
+      margin-top: clamp(48px,7vw,80px);
+    }
+    .team-portrait {
+      border-radius: var(--radius-lg); overflow: hidden;
+      position: relative;
+    }
+    .team-portrait img { width: 100%; display: block; }
+    .team-portrait-badge {
+      position: absolute; bottom: 20px; left: 20px;
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 14px 18px; box-shadow: var(--shadow-lg);
+    }
+    .team-portrait-badge .stars { font-size: 16px; }
+    .team-portrait-badge p { font-size: 12px; color: var(--slate); margin-top: 4px; }
+    .team-bio h1 { margin-bottom: 6px; }
+    .team-bio .role { font-size: 14px; font-weight: 600; color: var(--mint); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 24px; }
+    .team-bio p { font-size: 15px; color: var(--slate); line-height: 1.8; margin-bottom: 14px; }
+    .credentials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 32px; }
+    .credential {
+      background: var(--off); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px 16px;
+    }
+    .credential-icon { font-size: 20px; margin-bottom: 6px; }
+    .credential h4 { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+    .credential p { font-size: 12px; color: var(--slate); line-height: 1.5; }
+    .values-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: clamp(36px,5vw,56px); }
+    .value-card { background: var(--off); border-radius: var(--radius-lg); padding: 28px 24px; text-align: center; }
+    .value-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--mint-pale); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; }
+    .value-icon svg { width: 24px; height: 24px; stroke: var(--mint); fill: none; stroke-width: 1.8; }
+    .value-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .value-card p { font-size: 13px; color: var(--slate); line-height: 1.65; }
+    @media (max-width: 768px) {
+      .team-hero-grid { grid-template-columns: 1fr; }
+      .credentials-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<header class="header"><nav class="nav"><a href="index.html" class="logo"><div class="logo-mark"><svg viewBox="0 0 24 24" fill="#2ABFA3"><path d="M8.5 21c-1.5 0-2.8-.6-3.7-1.6C3.9 18.4 3.5 17 3.5 15.5c0-1.2.3-2.4.8-3.5.5-1 1.1-2 1.6-3 .4-.7.7-1.5.9-2.3.2-.8.2-1.6 0-2.3-.1-.4-.1-.8 0-1.1.2-.7.8-1.2 1.5-1.3.7-.1 1.4.2 1.8.8l.2.3c.3.5.5 1 .5 1.6 0 .5-.1 1-.3 1.5l-.1.2c-.1.3 0 .6.2.8.2.2.5.2.7.1.9-.4 1.9-.3 2.7.3.5.3.9.8 1.1 1.3.1.3.4.5.7.5.4 0 .7-.1 1-.3.4-.3.9-.4 1.4-.3.7.1 1.3.6 1.5 1.3.2.6.1 1.3-.2 1.9-.4.7-.5 1.5-.4 2.3.1.5.1 1 0 1.5-.3 1.3-1.1 2.4-2.3 3.1C13.6 20.7 12.5 21 11.3 21H8.5z"/></svg></div><div class="logo-text"><strong>Podología Parrilla</strong><span>Sevilla</span></div></a><ul class="nav-links"><li><a href="index.html">Inicio</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="tarifas.html">Tarifas</a></li><li><a href="equipo.html">Equipo</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contacto.html">Contacto</a></li></ul><a href="reservar.html" class="nav-cta"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Reservar cita</a><button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button></nav></header>
+<div class="mobile-drawer" id="mobileDrawer"><a href="index.html">Inicio</a><a href="servicios.html">Servicios</a><a href="tarifas.html">Tarifas</a><a href="equipo.html">Equipo</a><a href="faq.html">Preguntas frecuentes</a><a href="contacto.html">Contacto</a><a href="reservar.html" class="drawer-cta">Reservar cita</a></div>
+
+<div class="page-hero"><div class="container"><div class="page-hero-content">
+  <div class="breadcrumb"><a href="index.html">Inicio</a><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>Equipo</div>
+  <h1>El <span>profesional</span></h1>
+  <p>Conoce a la persona detrás del centro: su formación, su filosofía y su compromiso con cada paciente.</p>
+</div></div></div>
+
+<section class="section">
+  <div class="container">
+    <div class="team-hero-grid reveal">
+      <div class="team-portrait">
+        <img src="https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg?auto=compress&cs=tinysrgb&w=700&h=900&fit=crop" alt="José Manuel Parrilla — Podólogo Sevilla" loading="lazy"/>
+        <div class="team-portrait-badge"><div class="stars">★★★★★</div><p>Valoración media Google</p></div>
+      </div>
+      <div class="team-bio">
+        <div class="label">Fundador y podólogo</div>
+        <h1 class="h2">José Manuel Parrilla Cruzado</h1>
+        <p class="role">Podólogo Colegiado · Sevilla</p>
+        <p>Podólogo con amplia experiencia en el diagnóstico y tratamiento de patologías del pie, tanto a nivel clínico como deportivo. Fundador del Centro de Podología y Fisioterapia Parrilla en Sevilla.</p>
+        <p>Su enfoque se basa en escuchar a cada paciente, entender su problema en profundidad y ofrecer soluciones reales y duraderas, sin tecnicismos y con toda la información necesaria para que cada persona comprenda su diagnóstico.</p>
+        <p>Combina el rigor clínico con un trato cercano y humano que marca la diferencia. Cada consulta es una oportunidad de mejorar la calidad de vida del paciente, no solo tratar un síntoma.</p>
+        <div class="credentials-grid">
+          <div class="credential"><div class="credential-icon">🎓</div><h4>Grado en Podología</h4><p>Formación universitaria especializada</p></div>
+          <div class="credential"><div class="credential-icon">🦶</div><h4>Biomecánica y Pisada</h4><p>Especialista en estudio de la marcha</p></div>
+          <div class="credential"><div class="credential-icon">⚡</div><h4>Podología Deportiva</h4><p>Atención al deportista de alto rendimiento</p></div>
+          <div class="credential"><div class="credential-icon">🔬</div><h4>Cirugía Podológica</h4><p>Cirugía ambulatoria especializada</p></div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="reservar.html" class="btn btn-mint">Reservar cita</a>
+          <a href="contacto.html" class="btn btn-outline-mint">Contactar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--off)">
+  <div class="container">
+    <div style="text-align:center" class="reveal">
+      <div class="label">Nuestra filosofía</div>
+      <h2 class="h2">Los valores que guían cada consulta</h2>
+    </div>
+    <div class="values-grid reveal d1">
+      <div class="value-card"><div class="value-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><h3>Trato humano</h3><p>Cada paciente merece ser escuchado. Nos tomamos el tiempo necesario para entender tu problema antes de proponer cualquier tratamiento.</p></div>
+      <div class="value-card"><div class="value-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><h3>Rigor clínico</h3><p>Aplicamos los protocolos y técnicas más actuales, respaldados por la evidencia científica disponible. Tu salud es lo primero.</p></div>
+      <div class="value-card"><div class="value-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22 4 12 14.01 9 11.01" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Resultados reales</h3><p>No buscamos que vuelvas más de lo necesario. Nuestro objetivo es que el tratamiento funcione y que tu problema no vuelva a aparecer.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip"><div class="container"><div class="cta-strip-inner reveal"><div><h2>¿Quieres conocernos en persona?</h2><p>Reserva tu primera consulta y cuéntanos qué te pasa.</p></div><div class="cta-strip-actions"><a href="reservar.html" class="btn btn-white btn-lg">Reservar cita</a><div class="cta-phone"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Llamar: <a href="tel:644696197">644 69 61 97</a></div></div></div></div></section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="index.html" class="logo footer-logo"><div class="logo-mark"><svg viewBox="0 0 24 24" fill="#2ABFA3"><path d="M8.5 21c-1.5 0-2.8-.6-3.7-1.6C3.9 18.4 3.5 17 3.5 15.5c0-1.2.3-2.4.8-3.5.5-1 1.1-2 1.6-3 .4-.7.7-1.5.9-2.3.2-.8.2-1.6 0-2.3-.1-.4-.1-.8 0-1.1.2-.7.8-1.2 1.5-1.3.7-.1 1.4.2 1.8.8l.2.3c.3.5.5 1 .5 1.6 0 .5-.1 1-.3 1.5l-.1.2c-.1.3 0 .6.2.8.2.2.5.2.7.1.9-.4 1.9-.3 2.7.3.5.3.9.8 1.1 1.3.1.3.4.5.7.5.4 0 .7-.1 1-.3.4-.3.9-.4 1.4-.3.7.1 1.3.6 1.5 1.3.2.6.1 1.3-.2 1.9-.4.7-.5 1.5-.4 2.3.1.5.1 1 0 1.5-.3 1.3-1.1 2.4-2.3 3.1C13.6 20.7 12.5 21 11.3 21H8.5z"/></svg></div><div class="logo-text"><strong>Podología Parrilla</strong><span>Sevilla</span></div></a><p>Centro especializado en podología y fisioterapia. Calle Arroyo, 22 · Sevilla.</p><div class="socials"><a href="https://www.instagram.com/podologiaparrilla/" class="social-btn" target="_blank" rel="noopener">IG</a><a href="https://www.facebook.com/podologia.parrilla/" class="social-btn" target="_blank" rel="noopener">FB</a></div></div><div class="footer-col"><h4>Servicios</h4><ul><li><a href="servicios.html">Ver todos</a></li></ul></div><div class="footer-col"><h4>Clínica</h4><ul><li><a href="equipo.html">Equipo</a></li><li><a href="tarifas.html">Tarifas</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contacto.html">Contacto</a></li></ul></div><div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:644696197">644 69 61 97</a></li><li><a href="mailto:podologiaparrilla@gmail.com">podologiaparrilla@gmail.com</a></li></ul></div></div><div class="footer-bottom"><span>&copy; 2025 Centro de Podología Parrilla.</span></div></div></footer>
+<script src="nav.js"></script>
+</body>
+</html>
