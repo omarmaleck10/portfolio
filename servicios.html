@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Servicios — Podología Parrilla · Sevilla</title>
+  <meta name="description" content="Todos los servicios de podología y fisioterapia del Centro Parrilla en Sevilla. Quiropodia, estudio de la pisada, plantillas, cirugía podológica y más."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .svc-detail-grid {
+      display: grid; gap: clamp(40px, 6vw, 80px);
+      margin-top: clamp(48px, 7vw, 80px);
+    }
+    .svc-detail {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 5vw, 72px); align-items: center;
+    }
+    .svc-detail:nth-child(even) .svc-detail-img { order: 2; }
+    .svc-detail:nth-child(even) .svc-detail-text { order: 1; }
+    .svc-detail-img {
+      border-radius: var(--radius-lg); overflow: hidden;
+      aspect-ratio: 4/3; position: relative;
+    }
+    .svc-detail-img img { width: 100%; height: 100%; object-fit: cover; }
+    .svc-detail-num {
+      position: absolute; top: 20px; left: 20px;
+      background: var(--navy); color: var(--mint);
+      font-size: 13px; font-weight: 800; padding: 6px 12px;
+      border-radius: 100px; letter-spacing: -.01em;
+    }
+    .svc-detail-text {}
+    .svc-detail-text h2 { margin-bottom: 14px; }
+    .svc-detail-text p { font-size: 15px; color: var(--slate); line-height: 1.8; margin-bottom: 12px; }
+    .svc-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 28px; }
+    .svc-tag {
+      background: var(--mint-pale); color: var(--mint);
+      font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 100px;
+    }
+    @media (max-width: 768px) {
+      .svc-detail { grid-template-columns: 1fr; }
+      .svc-detail:nth-child(even) .svc-detail-img { order: unset; }
+      .svc-detail:nth-child(even) .svc-detail-text { order: unset; }
+      .svc-detail-img { aspect-ratio: 16/9; }
+    }
+  </style>
+</head>
+<body>
+<header class="header"><nav class="nav"><a href="index.html" class="logo"><div class="logo-mark"><svg viewBox="0 0 24 24" fill="#2ABFA3"><path d="M8.5 21c-1.5 0-2.8-.6-3.7-1.6C3.9 18.4 3.5 17 3.5 15.5c0-1.2.3-2.4.8-3.5.5-1 1.1-2 1.6-3 .4-.7.7-1.5.9-2.3.2-.8.2-1.6 0-2.3-.1-.4-.1-.8 0-1.1.2-.7.8-1.2 1.5-1.3.7-.1 1.4.2 1.8.8l.2.3c.3.5.5 1 .5 1.6 0 .5-.1 1-.3 1.5l-.1.2c-.1.3 0 .6.2.8.2.2.5.2.7.1.9-.4 1.9-.3 2.7.3.5.3.9.8 1.1 1.3.1.3.4.5.7.5.4 0 .7-.1 1-.3.4-.3.9-.4 1.4-.3.7.1 1.3.6 1.5 1.3.2.6.1 1.3-.2 1.9-.4.7-.5 1.5-.4 2.3.1.5.1 1 0 1.5-.3 1.3-1.1 2.4-2.3 3.1C13.6 20.7 12.5 21 11.3 21H8.5z"/></svg></div><div class="logo-text"><strong>Podología Parrilla</strong><span>Sevilla</span></div></a><ul class="nav-links"><li><a href="index.html">Inicio</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="tarifas.html">Tarifas</a></li><li><a href="equipo.html">Equipo</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contacto.html">Contacto</a></li></ul><a href="reservar.html" class="nav-cta"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Reservar cita</a><button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button></nav></header>
+<div class="mobile-drawer" id="mobileDrawer"><a href="index.html">Inicio</a><a href="servicios.html">Servicios</a><a href="tarifas.html">Tarifas</a><a href="equipo.html">Equipo</a><a href="faq.html">Preguntas frecuentes</a><a href="contacto.html">Contacto</a><a href="reservar.html" class="drawer-cta">Reservar cita</a></div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="breadcrumb"><a href="index.html">Inicio</a><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>Servicios</div>
+      <h1>Nuestros <span>servicios</span></h1>
+      <p>Tratamientos especializados de podología y fisioterapia con el rigor clínico y la atención personalizada que cada paciente merece.</p>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="svc-detail-grid">
+
+      <div class="svc-detail reveal">
+        <div class="svc-detail-img">
+          <img src="https://images.pexels.com/photos/5619459/pexels-photo-5619459.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Podología infantil Sevilla" loading="lazy"/>
+          <span class="svc-detail-num">01</span>
+        </div>
+        <div class="svc-detail-text">
+          <div class="label">Podología Infantil</div>
+          <h2 class="h3">Cuidado especializado desde los primeros pasos</h2>
+          <p>El desarrollo del pie en la infancia es un proceso delicado que requiere un seguimiento especializado. Diagnosticamos y tratamos las alteraciones propias de cada etapa del crecimiento.</p>
+          <p>Una detección temprana evita compensaciones posturales y problemas en la edad adulta. Trabajamos con los más pequeños en un entorno cómodo y sin miedo.</p>
+          <div class="svc-tags"><span class="svc-tag">Pie plano</span><span class="svc-tag">Pie cavo</span><span class="svc-tag">Marcha en puntillas</span><span class="svc-tag">Deformidades digitales</span></div>
+          <a href="reservar.html" class="btn btn-navy">Reservar cita</a>
+        </div>
+      </div>
+
+      <div class="svc-detail reveal">
+        <div class="svc-detail-img">
+          <img src="https://images.pexels.com/photos/3992862/pexels-photo-3992862.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Quiropodia tratamiento del pie" loading="lazy"/>
+          <span class="svc-detail-num">02</span>
+        </div>
+        <div class="svc-detail-text">
+          <div class="label">Quiropodia</div>
+          <h2 class="h3">Higiene y cuidado clínico del pie</h2>
+          <p>Tratamiento profesional de todas las afecciones del pie: durezas, callos, helomas, papilomas y uñas encarnadas. Aplicamos las técnicas más actuales con material estéril y de un solo uso.</p>
+          <p>El servicio de quiropodia está incluido dentro de la consulta podológica general, sin coste adicional.</p>
+          <div class="svc-tags"><span class="svc-tag">Durezas y callos</span><span class="svc-tag">Uñas encarnadas</span><span class="svc-tag">Papilomas</span><span class="svc-tag">Helomas interdigitales</span></div>
+          <a href="reservar.html" class="btn btn-navy">Reservar cita</a>
+        </div>
+      </div>
+
+      <div class="svc-detail reveal">
+        <div class="svc-detail-img">
+          <img src="https://images.pexels.com/photos/7446989/pexels-photo-7446989.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Estudio biomecánico de la pisada" loading="lazy"/>
+          <span class="svc-detail-num">03</span>
+        </div>
+        <div class="svc-detail-text">
+          <div class="label">Estudio de la Pisada</div>
+          <h2 class="h3">Análisis biomecánico preciso de tu marcha</h2>
+          <p>Realizamos una exploración exhaustiva en camilla y en bipedestación, complementada con el análisis de la marcha mediante plataforma de presiones informatizada.</p>
+          <p>El resultado es un diagnóstico preciso de tu patrón de pisada y la instauración del tratamiento más adecuado para tu caso.</p>
+          <div class="svc-tags"><span class="svc-tag">Plataforma de presiones</span><span class="svc-tag">Análisis de la marcha</span><span class="svc-tag">Exploración en camilla</span><span class="svc-tag">Informe biomecánico</span></div>
+          <a href="reservar.html" class="btn btn-navy">Reservar cita</a>
+        </div>
+      </div>
+
+      <div class="svc-detail reveal">
+        <div class="svc-detail-img">
+          <img src="https://images.pexels.com/photos/8436586/pexels-photo-8436586.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Plantillas personalizadas podología" loading="lazy"/>
+          <span class="svc-detail-num">04</span>
+        </div>
+        <div class="svc-detail-text">
+          <div class="label">Plantillas Personalizadas</div>
+          <h2 class="h3">Soportes plantares fabricados a tu medida</h2>
+          <p>Cuando el estudio de la pisada determina que el paciente necesita soportes plantares, las fabricamos en el propio centro con materiales de primera calidad.</p>
+          <p>Cada plantilla es única, diseñada según la anatomía y necesidades específicas de cada paciente, para uso deportivo o de diario.</p>
+          <div class="svc-tags"><span class="svc-tag">Fabricación propia</span><span class="svc-tag">Uso deportivo</span><span class="svc-tag">Uso diario</span><span class="svc-tag">Control de seguimiento</span></div>
+          <a href="reservar.html" class="btn btn-navy">Reservar cita</a>
+        </div>
+      </div>
+
+      <div class="svc-detail reveal">
+        <div class="svc-detail-img">
+          <img src="https://images.pexels.com/photos/6749775/pexels-photo-6749775.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Cirugía podológica uña encarnada" loading="lazy"/>
+          <span class="svc-detail-num">05</span>
+        </div>
+        <div class="svc-detail-text">
+          <div class="label">Cirugía Podológica</div>
+          <h2 class="h3">Resolución definitiva en una sola sesión</h2>
+          <p>Realizamos cirugía podológica ambulatoria para la resolución definitiva de la uña encarnada crónica y otras patologías del pie que requieran intervención quirúrgica.</p>
+          <p>El procedimiento se realiza con anestesia local en la propia clínica. Incluimos el seguimiento postoperatorio completo hasta la curación total.</p>
+          <div class="svc-tags"><span class="svc-tag">Uña encarnada</span><span class="svc-tag">Anestesia local</span><span class="svc-tag">Ambulatoria</span><span class="svc-tag">Seguimiento completo</span></div>
+          <a href="reservar.html" class="btn btn-navy">Reservar cita</a>
+        </div>
+      </div>
+
+      <div class="svc-detail reveal">
+        <div class="svc-detail-img">
+          <img src="https://images.pexels.com/photos/3621186/pexels-photo-3621186.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Podología deportiva running" loading="lazy"/>
+          <span class="svc-detail-num">06</span>
+        </div>
+        <div class="svc-detail-text">
+          <div class="label">Podología Deportiva</div>
+          <h2 class="h3">Para que rindas al máximo sin lesiones</h2>
+          <p>Atención especializada en la prevención y el tratamiento de lesiones relacionadas con la práctica deportiva. Analizamos tu pisada en movimiento y diseñamos el tratamiento más adecuado.</p>
+          <p>Trabajamos con corredores, ciclistas, futbolistas y cualquier persona que practique deporte de forma habitual.</p>
+          <div class="svc-tags"><span class="svc-tag">Running</span><span class="svc-tag">Prevención de lesiones</span><span class="svc-tag">Análisis en movimiento</span><span class="svc-tag">Rendimiento deportivo</span></div>
+          <a href="reservar.html" class="btn btn-navy">Reservar cita</a>
+        </div>
+      </div>
+
+      <div class="svc-detail reveal">
+        <div class="svc-detail-img">
+          <img src="https://images.pexels.com/photos/5473177/pexels-photo-5473177.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Fisioterapia terapia manual" loading="lazy"/>
+          <span class="svc-detail-num">07</span>
+        </div>
+        <div class="svc-detail-text">
+          <div class="label">Fisioterapia</div>
+          <h2 class="h3">Recuperación funcional con base científica</h2>
+          <p>Abordamos patologías musculoesqueléticas agudas y crónicas mediante terapia manual, técnicas invasivas (punción seca, EPI) y ejercicio terapéutico.</p>
+          <p>Atendemos lesiones deportivas, traumatológicas y problemas propios de la tercera edad. Cada plan de tratamiento es personalizado y orientado a resultados concretos.</p>
+          <div class="svc-tags"><span class="svc-tag">Terapia manual</span><span class="svc-tag">Punción seca</span><span class="svc-tag">Ejercicio terapéutico</span><span class="svc-tag">Fisio deportiva</span></div>
+          <a href="reservar.html" class="btn btn-navy">Reservar cita</a>
+        </div>
+      </div>
+
+      <div class="svc-detail reveal">
+        <div class="svc-detail-img">
+          <img src="https://images.pexels.com/photos/5699517/pexels-photo-5699517.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Osteopatía tratamiento manual" loading="lazy"/>
+          <span class="svc-detail-num">08</span>
+        </div>
+        <div class="svc-detail-text">
+          <div class="label">Osteopatía</div>
+          <h2 class="h3">Tratamiento global que busca la causa</h2>
+          <p>La osteopatía aborda al paciente de manera global, buscando la causa del problema en lugar de tratar únicamente el síntoma. A través de técnicas manuales, se trabaja para restaurar el equilibrio funcional del organismo.</p>
+          <p>Indicada para dolores de espalda, cervicalgias, cefaleas, problemas digestivos y muchas otras patologías relacionadas con el sistema músculo-esquelético y visceral.</p>
+          <div class="svc-tags"><span class="svc-tag">Osteopatía estructural</span><span class="svc-tag">Osteopatía visceral</span><span class="svc-tag">Dolor crónico</span><span class="svc-tag">Cefaleas</span></div>
+          <a href="reservar.html" class="btn btn-navy">Reservar cita</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container"><div class="cta-strip-inner reveal"><div><h2>¿Listo para dar el primer paso?</h2><p>Reserva tu consulta online en menos de 2 minutos.</p></div><div class="cta-strip-actions"><a href="reservar.html" class="btn btn-white btn-lg">Reservar cita</a><div class="cta-phone"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>O llámanos: <a href="tel:644696197">644 69 61 97</a></div></div></div></div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="index.html" class="logo footer-logo"><div class="logo-mark"><svg viewBox="0 0 24 24" fill="#2ABFA3"><path d="M8.5 21c-1.5 0-2.8-.6-3.7-1.6C3.9 18.4 3.5 17 3.5 15.5c0-1.2.3-2.4.8-3.5.5-1 1.1-2 1.6-3 .4-.7.7-1.5.9-2.3.2-.8.2-1.6 0-2.3-.1-.4-.1-.8 0-1.1.2-.7.8-1.2 1.5-1.3.7-.1 1.4.2 1.8.8l.2.3c.3.5.5 1 .5 1.6 0 .5-.1 1-.3 1.5l-.1.2c-.1.3 0 .6.2.8.2.2.5.2.7.1.9-.4 1.9-.3 2.7.3.5.3.9.8 1.1 1.3.1.3.4.5.7.5.4 0 .7-.1 1-.3.4-.3.9-.4 1.4-.3.7.1 1.3.6 1.5 1.3.2.6.1 1.3-.2 1.9-.4.7-.5 1.5-.4 2.3.1.5.1 1 0 1.5-.3 1.3-1.1 2.4-2.3 3.1C13.6 20.7 12.5 21 11.3 21H8.5z"/></svg></div><div class="logo-text"><strong>Podología Parrilla</strong><span>Sevilla</span></div></a><p>Centro especializado en podología y fisioterapia. Calle Arroyo, 22 · Sevilla.</p><div class="socials"><a href="https://www.instagram.com/podologiaparrilla/" class="social-btn" target="_blank" rel="noopener">IG</a><a href="https://www.facebook.com/podologia.parrilla/" class="social-btn" target="_blank" rel="noopener">FB</a><a href="https://es.linkedin.com/in/jos%C3%A9-manuel-parrilla-cruzado-72a366220" class="social-btn" target="_blank" rel="noopener">LI</a></div></div><div class="footer-col"><h4>Servicios</h4><ul><li><a href="servicios.html">Podología Infantil</a></li><li><a href="servicios.html">Quiropodia</a></li><li><a href="servicios.html">Estudio de la Pisada</a></li><li><a href="servicios.html">Plantillas</a></li><li><a href="servicios.html">Cirugía Podológica</a></li><li><a href="servicios.html">Podología Deportiva</a></li><li><a href="servicios.html">Fisioterapia</a></li><li><a href="servicios.html">Osteopatía</a></li></ul></div><div class="footer-col"><h4>Clínica</h4><ul><li><a href="equipo.html">Equipo</a></li><li><a href="tarifas.html">Tarifas</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="reservar.html">Reservar cita</a></li></ul></div><div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:644696197">644 69 61 97</a></li><li><a href="mailto:podologiaparrilla@gmail.com">podologiaparrilla@gmail.com</a></li><li style="color:rgba(255,255,255,.3);font-size:13px">Calle Arroyo, 22 · Sevilla</li></ul></div></div><div class="footer-bottom"><span>&copy; 2025 Centro de Podología Parrilla. Todos los derechos reservados.</span></div></div></footer>
+<script src="nav.js"></script>
+</body>
+</html>
