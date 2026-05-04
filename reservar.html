@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reservar cita — Podología Parrilla · Sevilla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .booking-layout { display: grid; grid-template-columns: 1fr 380px; gap: clamp(32px,5vw,64px); align-items: start; }
+    .booking-form-wrap { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: clamp(28px,4vw,44px); }
+
+    /* Steps indicator */
+    .steps { display: flex; gap: 0; margin-bottom: 36px; }
+    .step { display: flex; align-items: center; flex: 1; }
+    .step-num { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--border); background: var(--white); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--slate); flex-shrink: 0; transition: all var(--ease); }
+    .step.active .step-num { background: var(--navy); border-color: var(--navy); color: var(--white); }
+    .step.done .step-num { background: var(--mint); border-color: var(--mint); color: var(--white); }
+    .step-label { font-size: 12px; font-weight: 600; color: var(--slate); margin-left: 10px; white-space: nowrap; }
+    .step.active .step-label { color: var(--navy); }
+    .step.done .step-label { color: var(--mint); }
+    .step-line { flex: 1; height: 2px; background: var(--border); margin: 0 10px; transition: background var(--ease); }
+    .step.done + .step .step-line,
+    .step.done .step-line { background: var(--mint); }
+
+    /* Form steps */
+    .form-step { display: none; }
+    .form-step.active { display: block; }
+    .step-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+    .step-subtitle { font-size: 14px; color: var(--slate); margin-bottom: 28px; }
+
+    /* Service selector */
+    .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
+    .svc-opt { padding: 14px 16px; border: 1.5px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: all var(--ease); background: var(--off); }
+    .svc-opt:hover { border-color: var(--mint); background: var(--mint-pale); }
+    .svc-opt.selected { border-color: var(--mint); background: var(--mint-pale); }
+    .svc-opt-name { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+    .svc-opt-price { font-size: 12px; color: var(--mint); font-weight: 700; }
+
+    /* Time slots */
+    .time-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 28px; }
+    .time-slot { padding: 10px 6px; text-align: center; border: 1.5px solid var(--border); border-radius: var(--radius); cursor: pointer; font-size: 13px; font-weight: 600; background: var(--off); transition: all var(--ease); }
+    .time-slot:hover:not(.taken) { border-color: var(--mint); color: var(--mint); background: var(--mint-pale); }
+    .time-slot.selected { border-color: var(--mint); background: var(--mint); color: var(--white); }
+    .time-slot.taken { opacity: .38; cursor: not-allowed; background: var(--border); }
+
+    /* Summary card */
+    .summary-card { background: var(--off); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; margin-bottom: 24px; }
+    .summary-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+    .summary-row { display: flex; justify-content: space-between; font-size: 13px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+    .summary-row:last-child { border-bottom: none; font-weight: 700; }
+    .summary-row span:first-child { color: var(--slate); }
+
+    /* Navigation */
+    .step-nav { display: flex; gap: 12px; justify-content: space-between; margin-top: 28px; }
+
+    /* Success */
+    .success-wrap { text-align: center; padding: 20px 0; display: none; }
+    .success-wrap.show { display: block; }
+    .success-icon { width: 72px; height: 72px; background: var(--mint-pale); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; }
+    .success-icon svg { width: 36px; height: 36px; stroke: var(--mint); fill: none; stroke-width: 1.8; }
+    .success-wrap h3 { font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+    .success-wrap p { font-size: 14px; color: var(--slate); line-height: 1.75; margin-bottom: 8px; }
+
+    /* Sidebar info */
+    .booking-sidebar { display: flex; flex-direction: column; gap: 16px; }
+    .info-card { background: var(--off); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; }
+    .info-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+    .info-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; font-size: 13px; }
+    .info-row:last-child { margin-bottom: 0; }
+    .info-row svg { width: 18px; height: 18px; stroke: var(--mint); fill: none; stroke-width: 1.8; flex-shrink: 0; margin-top: 1px; }
+    .info-row a { color: var(--mint); }
+    .info-card-note { background: var(--mint-pale); border-radius: var(--radius); padding: 12px 14px; font-size: 12px; color: var(--slate); line-height: 1.65; margin-top: 14px; }
+
+    @media (max-width: 900px) {
+      .booking-layout { grid-template-columns: 1fr; }
+      .booking-sidebar { order: -1; }
+    }
+    @media (max-width: 480px) {
+      .service-grid { grid-template-columns: 1fr; }
+      .time-grid { grid-template-columns: repeat(3,1fr); }
+      .steps { overflow-x: auto; }
+      .step-label { display: none; }
+    }
+  </style>
+</head>
+<body>
+<header class="header"><nav class="nav"><a href="index.html" class="logo"><div class="logo-mark"><svg viewBox="0 0 24 24" fill="#2ABFA3"><path d="M8.5 21c-1.5 0-2.8-.6-3.7-1.6C3.9 18.4 3.5 17 3.5 15.5c0-1.2.3-2.4.8-3.5.5-1 1.1-2 1.6-3 .4-.7.7-1.5.9-2.3.2-.8.2-1.6 0-2.3-.1-.4-.1-.8 0-1.1.2-.7.8-1.2 1.5-1.3.7-.1 1.4.2 1.8.8l.2.3c.3.5.5 1 .5 1.6 0 .5-.1 1-.3 1.5l-.1.2c-.1.3 0 .6.2.8.2.2.5.2.7.1.9-.4 1.9-.3 2.7.3.5.3.9.8 1.1 1.3.1.3.4.5.7.5.4 0 .7-.1 1-.3.4-.3.9-.4 1.4-.3.7.1 1.3.6 1.5 1.3.2.6.1 1.3-.2 1.9-.4.7-.5 1.5-.4 2.3.1.5.1 1 0 1.5-.3 1.3-1.1 2.4-2.3 3.1C13.6 20.7 12.5 21 11.3 21H8.5z"/></svg></div><div class="logo-text"><strong>Podología Parrilla</strong><span>Sevilla</span></div></a><ul class="nav-links"><li><a href="index.html">Inicio</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="tarifas.html">Tarifas</a></li><li><a href="equipo.html">Equipo</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contacto.html">Contacto</a></li></ul><a href="reservar.html" class="nav-cta"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Reservar cita</a><button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button></nav></header>
+<div class="mobile-drawer" id="mobileDrawer"><a href="index.html">Inicio</a><a href="servicios.html">Servicios</a><a href="tarifas.html">Tarifas</a><a href="equipo.html">Equipo</a><a href="faq.html">Preguntas frecuentes</a><a href="contacto.html">Contacto</a><a href="reservar.html" class="drawer-cta">Reservar cita</a></div>
+
+<div class="page-hero" style="min-height:auto"><div class="container"><div class="page-hero-content" style="padding:clamp(40px,6vw,72px) 0">
+  <div class="breadcrumb"><a href="index.html">Inicio</a><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>Reservar cita</div>
+  <h1>Reserva tu <span>cita</span></h1>
+  <p>Proceso rápido en 3 pasos. Confirmamos tu cita en menos de 24 horas.</p>
+</div></div></div>
+
+<section class="section" style="background:var(--off)">
+  <div class="container">
+    <div class="booking-layout">
+
+      <!-- FORM -->
+      <div class="booking-form-wrap reveal">
+
+        <!-- Steps bar -->
+        <div class="steps">
+          <div class="step active" id="stepBar1"><div class="step-num">1</div><span class="step-label">Servicio</span><div class="step-line"></div></div>
+          <div class="step" id="stepBar2"><div class="step-num">2</div><span class="step-label">Fecha y hora</span><div class="step-line"></div></div>
+          <div class="step" id="stepBar3"><div class="step-num">3</div><span class="step-label">Tus datos</span><div class="step-line"></div></div>
+        </div>
+
+        <!-- STEP 1 -->
+        <div class="form-step active" id="step1">
+          <p class="step-title">¿Qué servicio necesitas?</p>
+          <p class="step-subtitle">Selecciona el tratamiento que buscas.</p>
+          <div class="service-grid" id="serviceGrid">
+            <div class="svc-opt" data-svc="Consulta Podológica" data-price="30€"><div class="svc-opt-name">Consulta Podológica</div><div class="svc-opt-price">Desde 30€</div></div>
+            <div class="svc-opt" data-svc="Exploración Biomecánica" data-price="50€"><div class="svc-opt-name">Exploración Biomecánica</div><div class="svc-opt-price">Desde 50€</div></div>
+            <div class="svc-opt" data-svc="Biomecánica + Plantillas" data-price="170€"><div class="svc-opt-name">Biomecánica + Plantillas</div><div class="svc-opt-price">Desde 170€</div></div>
+            <div class="svc-opt" data-svc="Verruga plantar" data-price="120€"><div class="svc-opt-name">Verruga plantar</div><div class="svc-opt-price">Desde 120€</div></div>
+            <div class="svc-opt" data-svc="Podología Deportiva" data-price="50€"><div class="svc-opt-name">Podología Deportiva</div><div class="svc-opt-price">Desde 50€</div></div>
+            <div class="svc-opt" data-svc="Fisioterapia" data-price="Consultar"><div class="svc-opt-name">Fisioterapia</div><div class="svc-opt-price">Consultar</div></div>
+            <div class="svc-opt" data-svc="Osteopatía" data-price="Consultar"><div class="svc-opt-name">Osteopatía</div><div class="svc-opt-price">Consultar</div></div>
+            <div class="svc-opt" data-svc="Cirugía podológica" data-price="Consultar"><div class="svc-opt-name">Cirugía podológica</div><div class="svc-opt-price">Consultar</div></div>
+          </div>
+          <div class="step-nav"><span></span><button class="btn btn-navy" onclick="goStep(2)">Continuar</button></div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="form-step" id="step2">
+          <p class="step-title">Elige fecha y hora</p>
+          <p class="step-subtitle">Selecciona el día y el horario que mejor te venga.</p>
+          <div class="form-group" style="margin-bottom:20px">
+            <label class="form-label">Fecha de la cita</label>
+            <input type="date" class="form-input" id="bookDate"/>
+          </div>
+          <label class="form-label" style="margin-bottom:10px;display:block">Hora disponible</label>
+          <div class="time-grid">
+            <div class="time-slot" data-time="09:00">09:00</div>
+            <div class="time-slot" data-time="09:30">09:30</div>
+            <div class="time-slot" data-time="10:00">10:00</div>
+            <div class="time-slot taken">10:30</div>
+            <div class="time-slot" data-time="11:00">11:00</div>
+            <div class="time-slot" data-time="11:30">11:30</div>
+            <div class="time-slot taken">12:00</div>
+            <div class="time-slot" data-time="16:00">16:00</div>
+            <div class="time-slot" data-time="16:30">16:30</div>
+            <div class="time-slot" data-time="17:00">17:00</div>
+            <div class="time-slot" data-time="17:30">17:30</div>
+            <div class="time-slot" data-time="18:00">18:00</div>
+          </div>
+          <div class="step-nav">
+            <button class="btn btn-outline-mint" onclick="goStep(1)">Atrás</button>
+            <button class="btn btn-navy" onclick="goStep(3)">Continuar</button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="form-step" id="step3">
+          <p class="step-title">Tus datos</p>
+          <p class="step-subtitle">Necesitamos tus datos para confirmar la reserva.</p>
+          <div class="summary-card" id="summaryCard"></div>
+          <div class="form-grid">
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Nombre *</label><input type="text" class="form-input" id="bk-nombre" placeholder="Nombre"/></div>
+              <div class="form-group"><label class="form-label">Apellidos *</label><input type="text" class="form-input" id="bk-apellidos" placeholder="Apellidos"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Teléfono *</label><input type="tel" class="form-input" id="bk-tel" placeholder="600 000 000"/></div>
+              <div class="form-group"><label class="form-label">Email *</label><input type="email" class="form-input" id="bk-email" placeholder="tu@email.com"/></div>
+            </div>
+            <div class="form-group"><label class="form-label">Observaciones</label><textarea class="form-textarea" id="bk-notas" placeholder="Describe brevemente el motivo de la consulta..." style="min-height:90px"></textarea></div>
+          </div>
+          <div class="step-nav">
+            <button class="btn btn-outline-mint" onclick="goStep(2)">Atrás</button>
+            <button class="btn btn-mint" onclick="submitBooking()">Confirmar cita</button>
+          </div>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="success-wrap" id="bookingSuccess">
+          <div class="success-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22 4 12 14.01 9 11.01" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>¡Cita solicitada!</h3>
+          <p>Hemos recibido tu solicitud. Nos pondremos en contacto contigo en menos de 24 horas para confirmarla.</p>
+          <p>Si necesitas cambiar o cancelar, llámanos al <strong>644 69 61 97</strong>.</p>
+          <button class="btn btn-outline-mint" style="margin-top:24px" onclick="resetBooking()">Hacer otra reserva</button>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="booking-sidebar reveal d1">
+        <div class="info-card">
+          <h3>Información del centro</h3>
+          <div class="info-row"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke-linecap="round"/><circle cx="12" cy="10" r="3"/></svg>Calle Arroyo, 22 · Sevilla</div>
+          <div class="info-row"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:644696197">644 69 61 97</a></div>
+          <div class="info-row"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:podologiaparrilla@gmail.com">podologiaparrilla@gmail.com</a></div>
+          <div class="info-card-note">Las horas marcadas como no disponibles ya están ocupadas. Si no encuentras el horario que necesitas, llámanos y lo buscamos juntos.</div>
+        </div>
+        <div class="info-card">
+          <h3>Horario</h3>
+          <div class="info-row"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div><strong>Lunes – Viernes</strong><br>9:00–14:00 / 16:00–20:00</div></div>
+          <div class="info-row"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div><strong>Sábado</strong><br>Consultar disponibilidad</div></div>
+        </div>
+        <div class="info-card" style="background:var(--navy); border-color:var(--navy-mid)">
+          <h3 style="color:var(--white)">¿Prefieres llamar?</h3>
+          <p style="font-size:13px;color:rgba(255,255,255,.6);margin-bottom:16px">Si prefieres gestionar tu cita por teléfono, llámanos en horario de atención.</p>
+          <a href="tel:644696197" class="btn btn-mint btn-full">644 69 61 97</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="index.html" class="logo footer-logo"><div class="logo-mark"><svg viewBox="0 0 24 24" fill="#2ABFA3"><path d="M8.5 21c-1.5 0-2.8-.6-3.7-1.6C3.9 18.4 3.5 17 3.5 15.5c0-1.2.3-2.4.8-3.5.5-1 1.1-2 1.6-3 .4-.7.7-1.5.9-2.3.2-.8.2-1.6 0-2.3-.1-.4-.1-.8 0-1.1.2-.7.8-1.2 1.5-1.3.7-.1 1.4.2 1.8.8l.2.3c.3.5.5 1 .5 1.6 0 .5-.1 1-.3 1.5l-.1.2c-.1.3 0 .6.2.8.2.2.5.2.7.1.9-.4 1.9-.3 2.7.3.5.3.9.8 1.1 1.3.1.3.4.5.7.5.4 0 .7-.1 1-.3.4-.3.9-.4 1.4-.3.7.1 1.3.6 1.5 1.3.2.6.1 1.3-.2 1.9-.4.7-.5 1.5-.4 2.3.1.5.1 1 0 1.5-.3 1.3-1.1 2.4-2.3 3.1C13.6 20.7 12.5 21 11.3 21H8.5z"/></svg></div><div class="logo-text"><strong>Podología Parrilla</strong><span>Sevilla</span></div></a><p>Centro especializado en podología y fisioterapia. Calle Arroyo, 22 · Sevilla.</p></div><div class="footer-col"><h4>Páginas</h4><ul><li><a href="servicios.html">Servicios</a></li><li><a href="tarifas.html">Tarifas</a></li><li><a href="equipo.html">Equipo</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contacto.html">Contacto</a></li></ul></div><div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:644696197">644 69 61 97</a></li><li><a href="mailto:podologiaparrilla@gmail.com">podologiaparrilla@gmail.com</a></li></ul></div></div><div class="footer-bottom"><span>&copy; 2025 Centro de Podología Parrilla.</span></div></div></footer>
+
+<script src="nav.js"></script>
+<script>
+const state = { svc: null, svcPrice: null, date: null, time: null };
+
+// Min date = tomorrow
+const d = new Date(); d.setDate(d.getDate()+1);
+document.getElementById('bookDate').min = d.toISOString().split('T')[0];
+document.getElementById('bookDate').addEventListener('change', e => state.date = e.target.value);
+
+// Service selection
+document.querySelectorAll('.svc-opt').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('.svc-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    state.svc = el.dataset.svc; state.svcPrice = el.dataset.price;
+  });
+});
+
+// Time selection
+document.querySelectorAll('.time-slot:not(.taken)').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected'); state.time = el.dataset.time;
+  });
+});
+
+function goStep(n) {
+  if (n === 2 && !state.svc) { alert('Selecciona un servicio para continuar.'); return; }
+  if (n === 3) {
+    if (!state.date) { alert('Selecciona una fecha.'); return; }
+    if (!state.time) { alert('Selecciona una hora.'); return; }
+    buildSummary();
+  }
+  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('step' + n);
+  if (el) el.classList.add('active');
+  updateStepBar(n);
+  document.querySelector('.booking-form-wrap').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function updateStepBar(active) {
+  [1,2,3].forEach(i => {
+    const bar = document.getElementById('stepBar'+i);
+    bar.classList.remove('active','done');
+    if (i < active) bar.classList.add('done');
+    else if (i === active) bar.classList.add('active');
+  });
+}
+
+function buildSummary() {
+  const dt = new Date(state.date + 'T12:00:00');
+  const ds = dt.toLocaleDateString('es-ES', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+  document.getElementById('summaryCard').innerHTML = `
+    <h4>Resumen de tu cita</h4>
+    <div class="summary-row"><span>Servicio</span><span>${state.svc}</span></div>
+    <div class="summary-row"><span>Fecha</span><span>${ds}</span></div>
+    <div class="summary-row"><span>Hora</span><span>${state.time}</span></div>
+    <div class="summary-row"><span>Precio estimado</span><span>${state.svcPrice}</span></div>
+  `;
+}
+
+function submitBooking() {
+  const nombre = document.getElementById('bk-nombre').value.trim();
+  const apellidos = document.getElementById('bk-apellidos').value.trim();
+  const tel = document.getElementById('bk-tel').value.trim();
+  const email = document.getElementById('bk-email').value.trim();
+  if (!nombre || !apellidos || !tel || !email) { alert('Por favor, completa todos los campos obligatorios.'); return; }
+  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('bookingSuccess').classList.add('show');
+  updateStepBar(4);
+  const booking = { id: 'B'+Date.now(), servicio:state.svc, fecha:state.date, hora:state.time, nombre, apellidos, telefono:tel, email, notas:document.getElementById('bk-notas').value, estado:'pendiente', createdAt:new Date().toISOString() };
+  const saved = JSON.parse(localStorage.getItem('parrilla_bookings')||'[]');
+  saved.push(booking);
+  localStorage.setItem('parrilla_bookings', JSON.stringify(saved));
+}
+
+function resetBooking() {
+  state.svc = null; state.svcPrice = null; state.date = null; state.time = null;
+  document.querySelectorAll('.svc-opt').forEach(o => o.classList.remove('selected'));
+  document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+  document.getElementById('bookDate').value = '';
+  ['bk-nombre','bk-apellidos','bk-tel','bk-email','bk-notas'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('bookingSuccess').classList.remove('show');
+  document.getElementById('step1').classList.add('active');
+  updateStepBar(1);
+}
+</script>
+</body>
+</html>
